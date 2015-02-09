@@ -1,4 +1,10 @@
 $('.dice').addClass('round0');
+alertify.prompt("Welcome to Five Die!\nWhat's your name?", function(e, str) {
+	if (e) {
+		alertify.alert("Ok, " + str + ".\n  Begin by Rolling the Dice.");
+	}
+});
+
 //interacts with the FiveDice Object only
 createNewGame = function() {
 	newGame();
@@ -11,7 +17,7 @@ createNewGame = function() {
 
 newGame = function() {
 	console.log("Starting a New Game.");
-	alert("Begin by Rolling the Dice.");
+	alertify.alert("Begin by Rolling the Dice.");
 	FiveDice.setCurrentRollCount(0);
 	FiveDice.setTotalScore(0);
 	FiveDice.resetDice();
@@ -24,17 +30,22 @@ $('#newGame').on('click', createNewGame);
 //ROLL THE DICE BUTTON//
 $('#rollDice').on('click', function() {
 	$('.dice').removeClass('round0');
-	//lock the previously claimed dice
-	$('.claimed').addClass('locked');
-	var newCount = FiveDice.currentRollCount += 1;
-	//grab unlocked dice from DOM and roll a #
-	if (newCount === 6) {
-		FiveDice.gameOver(); 
-	} else if (newCount === 5) {
-		$('#rollDice').text('Total Your Score');
-		$('.dice:not(.locked) span').text(rolledDiceNumber);
+
+	if (FiveDice.claimedCount < FiveDice.currentRollCount) {
+		alertify.alert("Please select at least one die per roll.");
 	} else {
-		$('.dice:not(.locked) span').text(rolledDiceNumber);
+	//lock the previously claimed dice
+		$('.claimed').addClass('locked');
+		var newCount = FiveDice.currentRollCount += 1;
+		//grab unlocked dice from DOM and roll a #
+		if (newCount === 6) {
+			FiveDice.gameOver(); 
+		} else if (newCount === 5) {
+			$('#rollDice').text('Total Your Score');
+			$('.dice:not(.locked) span').text(rolledDiceNumber);
+		} else {
+			$('.dice:not(.locked) span').text(rolledDiceNumber);
+		}
 	}
 	
 });
@@ -48,12 +59,15 @@ var rolledDiceNumber = function() {
 
 //CLAIMING DICE//
 var grabValue;
-//interacts with the DOM only
-$('.dice').on('click', function() {
-	
-	$(this).toggleClass('claimed');
 
+$('.dice').on('click', function() {
+	//interacting with the DOM 
+	$(this).toggleClass('claimed');
+	//changing roll # to match roll value
 	if ($(this).hasClass('claimed')) {
+	//adding to the claimed count
+		FiveDice.claimedCount += 1;
+		FiveDice.currentRollCount = FiveDice.claimedCount;
 		grabValue = Number($(this).text());
 		switch(grabValue) {
 			case 1:
@@ -79,6 +93,9 @@ $('.dice').on('click', function() {
 		}
 		$('#totalScore').text("Total Score: " + FiveDice.totalScore);
 	} else {
+		//subtracting from the claimed count
+		FiveDice.claimedCount -= 1;
+		FiveDice.currentRollCount = FiveDice.claimedCount;
 		switch(grabValue) {
 			case 1:
 				FiveDice.totalScore -= 1;
@@ -104,11 +121,3 @@ $('.dice').on('click', function() {
 		$('#totalScore').text("Total Score: " + FiveDice.totalScore);
 	}
 });
-
-//TOTAL SCORE TO DOM//
-
-
-
-
-
-//GAME IS OVER//

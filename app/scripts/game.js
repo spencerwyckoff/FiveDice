@@ -11,6 +11,7 @@ var setCurrentRollCount;
 var checkedClaimedDice;
 var diceScore;
 var createNewGame;
+var claimedCount;
 
 //FiveDice GAME OBJECT
 var FiveDice = {
@@ -19,6 +20,7 @@ var FiveDice = {
 	maxRollCount: 5,
 	totalScore: 0,	
 	theDice: allDice,
+	claimedCount: 0,
 	
 //new game methods
 
@@ -52,7 +54,7 @@ var FiveDice = {
 	},
 
 	gameOver: function() {
-		alert("The Game is Over. \nClick New Game to Play again.");
+		alertify.alert("The Game is Over. \nClick New Game to Play again.");
 	},//the game ends when all dice are locked OR...
 						//the maxRollCount is exceeded
 };
