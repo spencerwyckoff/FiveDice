@@ -2,25 +2,133 @@
 @import '../../bower_components/bourbon/dist/bourbon';
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
+//variables
+$soft-green: #379E5A;
+$darker-green: #2E854C;
+$light-grey: #E2E4E6;
+$grey: #8C8C8C;
+$dark-grey: #4D4D4D; 
+$hover-green: #81B593;
+
+
 // Custom Styles
 body {
-  background: #fafafa;
+  background-color: $darker-green;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #333;
+  color: $dark-grey;
+  font-size: 62.5%;
 }
 
-.hero-unit {
-  margin: 50px auto 0 auto;
-  width: 600px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
-  border-radius: 6px;
-  padding: 60px;
-  h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
+#logo {
+  display: block;
+  width: 35%;
+  min-width: 155px;
+  max-width: 300px;
+  margin: 2% auto;
+}
+
+button {
+  background: $hover-green;
+  border: 3px solid white;;
+  border-radius: 10px;
+  color: black; 
+  float: left;
+  font-size: 2rem; //make font adjust size?
+  margin: 4%;
+  padding: 5px;
+  min-width: 130px;
+  max-height: 125px;
+  width: 40%; 
+  &:hover {
+    background: #D6D6D6;
+    // font-weight: bold;
   }
 }
+
+.diceContainer {
+  margin: 0px 10%;
+  float: left;  
+  width: 80%;
+  height: 40%;
+
+    .dice {
+      min-width: 75px;
+      min-height: 75px;
+      float: left;
+      background-color: white;
+      margin: 5% 3%;
+      border: 3px solid black;
+      border-radius: 5px;
+      text-align: center;
+      padding: 5px;
+      box-shadow: 1px 1px 2px #ffffff;
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: 1px 1px 6px orange;
+      }
+
+      span {
+        font-weight: bold;
+        font-size: 3rem;
+        color: black;
+      }
+    }
+    .claimed {
+      border: 3px solid orange;
+      span {
+        color: #FF8122;
+      }
+    }
+
+    .locked {
+      border: 3px solid red;
+      span {
+        color: red;
+      }
+    }
+
+    .round0 {
+      pointer-events: none;
+    }
+  
+}
+
+#totalScore {
+  background: #D6D6D6;
+  border: 3px solid white;;
+  border-radius: 10px;
+  color: black; 
+  float: left;
+  font-size: 2rem; //make font adjust size?
+  margin: 4% 10%;
+  padding: 15px 5px;
+  text-align: center;
+  min-width: 130px;
+  max-height: 125px;
+  width: 80%;
+  span {
+      // font-weight: bold;
+      color: black;
+    }
+}
+
+
+
+// div.dice {
+//   float:left;
+//   width:32px;
+//   background:#F5F5F5;
+//   border:#999 1px solid;
+//   padding:10px;
+//   font-size:24px;
+//   text-align:center;
+//   margin:5px; 
+
+//   &:hover {
+//     cursor: pointer;  
+//   }
+// }
+
+
+
