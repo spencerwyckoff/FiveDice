@@ -140,7 +140,7 @@ var FiveDice = {
 //game over method
 	gameOver: function() {
 		if (this.totalScore === 0) {
-			alertify.confirm("The game is complete, " + playerName + ". <br/><br/><strong>You scored " + this.totalScore + " points.</strong><br/><br/>Congratulations! That is the best possible score!<br/><br/> Want to play again?");
+			alertify.confirm("The game is complete, " + playerName + ". <br/><br/><strong>You scored " + this.totalScore + " points.</strong><br/><br/>Congratulations! That is the best possible score!<br/><br/>You have earned the title: BadAss<br/><br/> Want to play again?");
 		} else if (this.totalScore >=1 && this.totalScore < 5) {
 			alertify.confirm("The game is complete, " + playerName + ". <br/><br/><strong>You scored " + this.totalScore + " points.</strong><br/><br/>That is a solid score, nice job.<br/><br/>Want to play again?");
 		} else if (this.totalScore >=5 && this.totalScore < 10) {
