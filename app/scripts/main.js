@@ -1,10 +1,10 @@
 $('.dice').addClass('round0');
-alertify.prompt("<strong>Welcome to Five Die!</strong> <br/> <font size='4px'>The simple, yet surprisingly addictive, dice game.</font><br/><br/><strong>What's your name?</strong>", function(e, str) {
-	if (e) {
-		playerName = str;
-		alertify.alert("Thanks, " + str + ".</br></br><strong>The Five Die Rules:</strong></br><font size='4px'>1) The goal is to get the lowest possible score.<br/>2) You must select at least 1 die per roll.<br/>(yes, you can select multiple dice per roll)<br/>3) 3's = 0pts, everything else is worth its value.</font><br/><br/><strong>Let's Begin - Roll the Dice!</strong>");
-	}
-});
+// alertify.prompt("<strong>Welcome to Five Die!</strong> <br/> <font size='4px'>The simple, yet surprisingly addictive, dice game.</font><br/><br/><strong>What's your name?</strong>", function(e, str) {
+// 	if (e) {
+// 		playerName = str;
+// 		alertify.alert("Thanks, " + str + ".</br></br><strong>The Five Die Rules:</strong></br><font size='4px'>1) The goal is to get the lowest possible score.<br/>2) You must select at least 1 die per roll.<br/>(yes, you can select multiple dice per roll)<br/>3) 3's = 0pts, everything else is worth its value.</font><br/><br/><strong>Let's Begin - Roll the Dice!</strong>");
+// 	}
+// });
 
 //interacts with the FiveDice Object only
 createNewGame = function() {
