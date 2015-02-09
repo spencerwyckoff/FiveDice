@@ -86,6 +86,7 @@ button {
 
     .locked {
       border: 3px solid red;
+      pointer-events: none;
       span {
         color: red;
       }
