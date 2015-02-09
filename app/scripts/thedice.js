@@ -1,3 +1,20 @@
+var theDice;
+var newGame;
+var rollTheDice;
+var claimToggle;
+var lockDice;
+var startRollCount;
+var maxRollCount;
+var currentRollCount;
+var gameOver;
+var setCurrentRollCount;
+var checkedClaimedDice;
+var diceScore;
+var createNewGame;
+var claimedCount;
+var playerName;
+var scoresDatabase = [];
+
 //The Dice Object Constructor
 function DiceObj (name) {
 	this.name = name;

@@ -1,18 +1,3 @@
-var theDice;
-var newGame;
-var rollTheDice;
-var claimToggle;
-var lockDice;
-var startRollCount;
-var maxRollCount;
-var currentRollCount;
-var gameOver;
-var setCurrentRollCount;
-var checkedClaimedDice;
-var diceScore;
-var createNewGame;
-var claimedCount;
-
 //FiveDice GAME OBJECT
 var FiveDice = {
 	startRollCount: 0,
@@ -23,11 +8,9 @@ var FiveDice = {
 	claimedCount: 0,
 	
 //new game methods
-
 	setCurrentRollCount: function(rollCount) {
 		this.currentRollCount = rollCount;
-	},	
-	
+	},		
 
 	setTotalScore: function(score) {
 		this.totalScore = score;
@@ -53,8 +36,20 @@ var FiveDice = {
 		die.locked = true;
 	},
 
+//game over method
 	gameOver: function() {
-		alertify.alert("The Game is Over. \nClick New Game to Play again.");
+		if (this.totalScore === 0) {
+			alertify.confirm("The game is complete, " + playerName + ". <br/><br/><strong>You scored " + this.totalScore + " points.</strong><br/><br/>Congratulations! That is the best possible score!<br/><br/> Want to play again?");
+		} else if (this.totalScore >=1 && this.totalScore < 5) {
+			alertify.confirm("The game is complete, " + playerName + ". <br/><br/><strong>You scored " + this.totalScore + " points.</strong><br/><br/>That is a solid score, nice job.<br/><br/>Want to play again?");
+		} else if (this.totalScore >=5 && this.totalScore < 10) {
+			alertify.confirm("The game is complete, " + playerName + ". <br/><br/><strong>You scored " + this.totalScore + " points.</strong><br/><br/>That's an ok score, but you can do better.<br/><br/>Want to play again?");
+		} else if (this.totalScore >=10 && this.totalScore < 15) {
+			alertify.confirm("The game is complete, " + playerName + ". <br/><br/><strong>You scored " + this.totalScore + " points.</strong><br/><br/>Rough luck this time.<br/><br/>Want to play again?");
+		} else {
+			alertify.confirm("The game is complete, " + playerName + ". <br/><br/><strong>You scored " + this.totalScore + " points.</strong><br/><br/>Are you even trying?<br/> Get your head in the game.<br/><br/>Want to play again?");
+		}
+		scoresDatabase.push(this.totalScore);
 	},//the game ends when all dice are locked OR...
 						//the maxRollCount is exceeded
 };

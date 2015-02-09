@@ -1,7 +1,8 @@
 $('.dice').addClass('round0');
-alertify.prompt("Welcome to Five Die!\nWhat's your name?", function(e, str) {
+alertify.prompt("<strong>Welcome to Five Die!</strong> <br/> <font size='4px'>The simple, yet surprisingly addictive, dice game.</font><br/><br/><strong>What's your name?</strong>", function(e, str) {
 	if (e) {
-		alertify.alert("Ok, " + str + ".\n  Begin by Rolling the Dice.");
+		playerName = str;
+		alertify.alert("Thanks, " + str + ".</br></br><strong>The Five Die Rules:</strong></br><font size='4px'>1) The goal is to get the lowest possible score.<br/>2) You must select at least 1 die per roll.<br/>(yes, you can select multiple dice per roll)<br/>3) 3's = 0pts, everything else is worth its value.</font><br/><br/><strong>Let's Begin - Roll the Dice!</strong>");
 	}
 });
 
@@ -21,6 +22,7 @@ newGame = function() {
 	FiveDice.setCurrentRollCount(0);
 	FiveDice.setTotalScore(0);
 	FiveDice.resetDice();
+	FiveDice.claimedCount = 0;
 };
 //START A NEW GAME BUTTON//
 $('#newGame').on('click', createNewGame);
@@ -30,6 +32,11 @@ $('#newGame').on('click', createNewGame);
 //ROLL THE DICE BUTTON//
 $('#rollDice').on('click', function() {
 	$('.dice').removeClass('round0');
+	$('.diceContainer').addClass('animated tada');
+	setTimeout( function() {
+		$('.diceContainer').removeClass('animated tada');	
+	}, 1000);
+
 
 	if (FiveDice.claimedCount < FiveDice.currentRollCount) {
 		alertify.alert("Please select at least one die per roll.");
@@ -43,8 +50,11 @@ $('#rollDice').on('click', function() {
 		} else if (newCount === 5) {
 			$('#rollDice').text('Total Your Score');
 			$('.dice:not(.locked) span').text(rolledDiceNumber);
+			$('.dice').removeClass('animated tada');
 		} else {
-			$('.dice:not(.locked) span').text(rolledDiceNumber);
+			$('.dice:not(.locked) span').addClass('animated tada').text(rolledDiceNumber);
+			$('.dice').removeClass('animated tada');
+
 		}
 	}
 	
